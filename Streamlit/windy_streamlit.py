@@ -27,28 +27,30 @@ st.markdown(
 # title
 st.title("Session Predictor - Vassiliki")
 
-st.markdown("Input results for today's forecast to predict your session. Model trained on 6 years of historical data from Vassiliki Bay, finding the link between forecast predictors and the elusive Eric. For best results, use with Windguru.")
+st.markdown("See if you'll be bobbing, planing or flying!")
+
+st.markdown("Input results for today's forecast to predict your session. Model trained on 6 years of historical data from Vassiliki Bay, finding the link between forecast predictors and the elusive Eric. For best results, use data from the [Windguru](https://www.windguru.cz/49202) website.")
 
 def windy():
     '''function for producing a prediction on session quality from a given set of data, using logreg.'''
     # Take inputs
     ws_12 = st.number_input("Input Wind Speed at 12.00", 0, 100)
-    ws_15 = st.number_input("Input Wind Speed at 15.00", 0, 100)
+    ws_15 = st.number_input("Input Wind Speed at 16.00", 0, 100)
     ws_18 = st.number_input("Input Wind Speed at 18.00", 0, 100)
-    ws_21 = st.number_input("Input Wind Speed at 21.00", 0, 100)
+    ws_21 = st.number_input("Input Wind Speed at 20.00", 0, 100)
     wg_12 = st.number_input("Input Wind Gusts at 12.00", 0, 100)
-    wg_15 = st.number_input("Input Wind Gusts at 15.00", 0, 100)
+    wg_15 = st.number_input("Input Wind Gusts at 16.00", 0, 100)
     t_12 = st.number_input("Input Temperature at 12.00", 0, 100)
-    t_15 = st.number_input("Input Temperature at 15.00", 0, 100)
+    t_15 = st.number_input("Input Temperature at 16.00", 0, 100)
     t_18 = st.number_input("Input Temperature at 18.00", 0, 100)
-    cc_09 = st.number_input("Input Cloud Cover at 09.00", 0, 100)
+    cc_09 = st.number_input("Input Cloud Cover at 10.00", 0, 100)
     cc_12 = st.number_input("Input Cloud Cover at 12.00", 0, 100)
-    cc_15 = st.number_input("Input Cloud Cover at 15.00", 0, 100)
+    cc_15 = st.number_input("Input Cloud Cover at 16.00", 0, 100)
     
     allowed_directions = ['N', 'NNE', 'NE', 'NEE', 'E', 'SEE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'SWW', 
                          'W', 'NWW', 'NW', 'NNW']
     wd_12 = st.selectbox("Please select the Wind Direction at 12.00", allowed_directions)
-    wd_15 = st.selectbox("Please select the Wind Direction at 15.00", allowed_directions)
+    wd_15 = st.selectbox("Please select the Wind Direction at 16.00", allowed_directions)
     wd_18 = st.selectbox("Please select the Wind Direction at 18.00", allowed_directions)
     
     # Map directions

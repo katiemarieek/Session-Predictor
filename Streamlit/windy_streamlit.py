@@ -76,9 +76,9 @@ def windy():
         df[['prob_0', 'prob_1', 'prob_2']] = logreg.predict_proba(df)
         df['y_pred'] = np.where(df['prob_0']>0.47, 0, np.where(df['prob_1']>0.47, 1, 2))
       
-        st.write(f"Bobbing probability: {df['prob_0'][0]}":.2f)
-        st.write(f"Planing probability: {df['prob_1'][0]}")
-        st.write(f"Flying probability: {df['prob_2'][0]}")
+        st.write(f"Bobbing probability: {df['prob_0'][0]:.2f}")
+        st.write(f"Planing probability: {df['prob_1'][0]:.2f}")
+        st.write(f"Flying probability: {df['prob_2'][0]:.2f}")
       
         if df['y_pred'][0] == 0: 
             y_pred_map = 'bobbing'

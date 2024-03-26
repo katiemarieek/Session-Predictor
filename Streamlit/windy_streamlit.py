@@ -34,16 +34,16 @@ st.markdown("Input results for today's forecast to predict your session. Model t
 def windy():
     '''function for producing a prediction on session quality from a given set of data, using logreg.'''
     # Take inputs
-    ws_12 = st.number_input("Input Wind Speed at 12.00", 0, 100)
-    ws_15 = st.number_input("Input Wind Speed at 16.00", 0, 100)
-    ws_18 = st.number_input("Input Wind Speed at 18.00", 0, 100)
-    ws_21 = st.number_input("Input Wind Speed at 20.00", 0, 100)
-    wg_12 = st.number_input("Input Wind Gusts at 12.00", 0, 100)
-    wg_15 = st.number_input("Input Wind Gusts at 16.00", 0, 100)
-    t_12 = st.number_input("Input Temperature at 12.00", 0, 100)
-    t_15 = st.number_input("Input Temperature at 16.00", 0, 100)
-    t_18 = st.number_input("Input Temperature at 18.00", 0, 100)
-    cc_09 = st.number_input("Input Cloud Cover at 10.00", 0, 100)
+    ws_12 = st.number_input("Input Wind Speed (in knots) at 12.00", 0, 100)
+    ws_15 = st.number_input("Input Wind Speed (in knots) at 16.00", 0, 100)
+    ws_18 = st.number_input("Input Wind Speed (in knots) at 18.00", 0, 100)
+    ws_21 = st.number_input("Input Wind Speed (in knots) at 20.00", 0, 100)
+    wg_12 = st.number_input("Input Wind Gusts (in knots) at 12.00", 0, 100)
+    wg_15 = st.number_input("Input Wind Gusts (in knots) at 16.00", 0, 100)
+    t_12 = st.number_input("Input Temperature (in Celcius) at 12.00", 0, 100)
+    t_15 = st.number_input("Input Temperature (in Celcius) at 16.00", 0, 100)
+    t_18 = st.number_input("Input Temperature (in Celcius) at 18.00", 0, 100)
+    cc_09 = st.number_input("Input Cloud Cover (High)at 10.00", 0, 100)
     cc_12 = st.number_input("Input Cloud Cover at 12.00", 0, 100)
     cc_15 = st.number_input("Input Cloud Cover at 16.00", 0, 100)
     
@@ -67,8 +67,9 @@ def windy():
     df = pd.DataFrame(data, index=[0])  
     
     # Load LogReg
-    with open('Streamlit/logreg.sav', 'rb') as file: 
-        logreg = pickle.load(file)  
+    with open('logreg.sav', 'rb') as file: 
+        logreg = pickle.load(file) 
+    file.close() 
     
     if st.button("Predict my session"):
     # Make prediction

@@ -84,7 +84,7 @@ def windy():
             y_pred_map = 'flying'
         st.write(f"Session Prediction : There is a 70% chance you'll be {y_pred_map} today.")
         if df['y_pred'][0] == 0:
-            st.write(f"It's not looking like Eric will show up today, so why not spend the afternoon working on             your light wind freestyle? \nIf you fancy a challenge, have a look at [this youtube tutorial](https://www.youtube.com/watch?v=TmjiKD8AfDk) to try your first clew-first helitack, clew-first upwind 360, improved sail stall, upwind 360 diablo or duck tack!")
+            st.write(f"It's not looking like Eric will show up today, so why not spend the afternoon working on your light wind freestyle? \nIf you fancy a challenge, have a look at [this youtube tutorial](https://www.youtube.com/watch?v=TmjiKD8AfDk) to try your first clew-first helitack, clew-first upwind 360, improved sail stall, upwind 360 diablo or duck tack!")
         elif df['y_pred'][1] == 0:
             st.write("Eric is coming! \nWhether it's a big kit blast or fast and furious you're due some windsurfing action today, so keep an eye on those flags.")
         elif df['y_pred'][1] == 0:

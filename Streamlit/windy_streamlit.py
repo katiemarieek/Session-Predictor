@@ -78,7 +78,7 @@ def windy():
       
         st.write(f"Bobbing probability: {df['prob_0']}")
         st.write(f"Planing probability: {df['prob_1']}")
-        st.write(f"Flying prob: {df['prob_2']}")
+        st.write(f"Flying probability: {df['prob_2']}")
       
         if df['y_pred'][0] == 0: 
             y_pred_map = 'bobbing'

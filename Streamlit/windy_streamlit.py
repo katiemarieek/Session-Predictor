@@ -85,16 +85,11 @@ def windy():
         st.write(f"Session Prediction : There is a 70% chance you'll be {y_pred_map} today.")
       
         if y_pred_map == 'bobbing':
-            st.write(f"""
-            It's not looking like Eric will show up today, so why not spend the afternoon working on your light wind freestyle?
-            
-            If you fancy a challenge, have a look at [this youtube tutorial](https://www.youtube.com/watch?v=TmjiKD8AfDk) to try your first clew-first helitack, clew-first upwind 360, improved sail stall, upwind 360 diablo or duck tack!""")
+            st.write(f"It's not looking like Eric will show up today, so why not spend the afternoon working on your light wind freestyle? If you fancy a challenge, have a look at [this youtube tutorial](https://www.youtube.com/watch?v=TmjiKD8AfDk) to try your first clew-first helitack, clew-first upwind 360, improved sail stall, upwind 360 diablo or duck tack!")
         elif y_pred_map == 'planing':
-            st.write("""Eric is coming!
-            
-            Whether it's a big kit blast or fast and furious you're due some windsurfing action today, so keep an eye on those flags.""")
+            st.write("Eric is coming! Whether it's a big kit blast or fast and furious you're due some windsurfing action today, so keep an eye on those flags.")
         elif y_pred_map == 'flying':
-            st.write("Batten down the hatches, it's going to be a big one! \nIf you've been waiting for a chance to try some high wind freestyle, today may be your day. Remember, if the weather looks changeable, keep your kit comfortable and your runs short. Good luck!")
+            st.write("Batten down the hatches, it's going to be a big one! If you've been waiting for a chance to try some high wind freestyle, today may be your day. Remember, if the weather looks changeable, keep your kit comfortable and your runs short. Good luck!")
 windy()  
 
 st.markdown("[Like this app? Donate via Ko-fi to fuel more caffeine driven data projects](https://ko-fi.com/katie42)")

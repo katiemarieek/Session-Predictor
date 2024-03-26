@@ -11,8 +11,22 @@ st.set_page_config(page_title="Session Predictor",
 # banner
 st.image("https://images.pexels.com/photos/2745761/pexels-photo-2745761.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", use_column_width=True)
 
+# background colour
+st.markdown(
+    f"""
+    <style>
+    .stApp {{
+        background-color:#92D9D0;
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # title
 st.title("Session Predictor - Vassiliki")
+
+st.markdown("Input results for today's forecast to predict your session. Model trained on 6 years of historical data from Vassiliki Bay, finding the link between forecast predictors and the elusive Eric. For best results, use with Windguru.")
 
 def windy():
     '''function for producing a prediction on session quality from a given set of data, using logreg.'''
@@ -68,3 +82,5 @@ def windy():
         st.write(f'Session Prediction : {y_pred_map} Time!')
 
 windy()  
+
+st.markdown("[Like this app? Donate via Ko-fi to fuel more caffeine driven data projects](https://ko-fi.com/katie42)")

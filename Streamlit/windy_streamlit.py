@@ -43,9 +43,9 @@ def windy():
     t_12 = st.number_input("Input Temperature (in Celcius) at 12.00", 0, 100)
     t_15 = st.number_input("Input Temperature (in Celcius) at 16.00", 0, 100)
     t_18 = st.number_input("Input Temperature (in Celcius) at 18.00", 0, 100)
-    cc_09 = st.number_input("Input Cloud Cover (High)at 10.00", 0, 100)
-    cc_12 = st.number_input("Input Cloud Cover at 12.00", 0, 100)
-    cc_15 = st.number_input("Input Cloud Cover at 16.00", 0, 100)
+    cc_09 = st.number_input("Input Cloud Cover (High) at 10.00", 0, 100)
+    cc_12 = st.number_input("Input Cloud Cover (High) at 12.00", 0, 100)
+    cc_15 = st.number_input("Input Cloud Cover (High) at 16.00", 0, 100)
     
     allowed_directions = ['N', 'NNE', 'NE', 'NEE', 'E', 'SEE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'SWW', 
                          'W', 'NWW', 'NW', 'NNW']
@@ -67,7 +67,7 @@ def windy():
     df = pd.DataFrame(data, index=[0])  
     
     # Load LogReg
-    with open('Streamlit/logreg.sav', 'rb') as file: 
+    with open('logreg.sav', 'rb') as file: 
         logreg = pickle.load(file) 
     file.close() 
     
@@ -77,13 +77,18 @@ def windy():
         df['y_pred'] = np.where(df['prob_0']>0.47, 0, np.where(df['prob_1']>0.47, 1, 2))
 
         if df['y_pred'][0] == 0: 
-            y_pred_map = 'Bobbing'
+            y_pred_map = 'bobbing'
         elif df['y_pred'][0] == 1: 
-            y_pred_map = 'Planing'
+            y_pred_map = 'planing'
         elif df['y_pred'][0] == 2: 
-            y_pred_map = 'Flying'
-        st.write(f'Session Prediction : {y_pred_map} Time!')
-
+            y_pred_map = 'flying'
+        st.write(f"Session Prediction : There is a 70% chance you'll be {y_pred_map} today.")
+        if df['y_pred'][0] == 0:
+            st.write(f"It's not looking like Eric will show up today, so why not spend the afternoon working on             your light wind freestyle? \nIf you fancy a challenge, have a look at [this youtube tutorial](https://www.youtube.com/watch?v=TmjiKD8AfDk) to try your first clew-first helitack, clew-first upwind 360, improved sail stall, upwind 360 diablo or duck tack!")
+        elif df['y_pred'][1] == 0:
+            st.write("Eric is coming! \nWhether it's a big kit blast or fast and furious you're due some windsurfing action today, so keep an eye on those flags.")
+        elif df['y_pred'][1] == 0:
+            st.write("Batten down the hatches, it's going to be a big one! If you've been waiting for a chance to try some high wind freestyle, today may be your day. Remember, if the weather looks changeable, keep your kit comfortable and your runs short. Good luck!")
 windy()  
 
 st.markdown("[Like this app? Donate via Ko-fi to fuel more caffeine driven data projects](https://ko-fi.com/katie42)")

@@ -10,14 +10,14 @@ st.set_page_config(page_title="Session Predictor",
                    layout="centered")
 
 # banner
-st.image("https://images.pexels.com/photos/11931693/pexels-photo-11931693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", use_column_width=True)
+st.image("https://images.pexels.com/photos/2745761/pexels-photo-2745761.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", use_column_width=True)
 
 # background colour
 st.markdown(
     f"""
     <style>
     .stApp {{
-        background-color:#F2F7FA;
+        background-color:#ACB3CD;
     }}
     </style>
     """,

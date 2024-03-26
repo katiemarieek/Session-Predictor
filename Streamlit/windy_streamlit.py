@@ -76,9 +76,9 @@ def windy():
         df[['prob_0', 'prob_1', 'prob_2']] = logreg.predict_proba(df)
         df['y_pred'] = np.where(df['prob_0']>0.47, 0, np.where(df['prob_1']>0.47, 1, 2))
       
-        st.write(f"Bobbing probability: {df['prob_0'][0]}")
-        st.write(f"Planing probability: {df['prob_1'][0]}")
-        st.write(f"Flying probability: {df['prob_2'][0]}")
+        st.write(f"Bobbing probability: {df['prob_0'][0]}:.2f")
+        st.write(f"Planing probability: {df['prob_1'][0]}:.2f")
+        st.write(f"Flying probability: {df['prob_2'][0]}:.2f")
       
         if df['y_pred'][0] == 0: 
             y_pred_map = 'bobbing'
@@ -86,7 +86,7 @@ def windy():
             y_pred_map = 'planing'
         elif df['y_pred'][0] == 2: 
             y_pred_map = 'flying'
-        st.write(f"Session Prediction : There is a 70% chance you'll be {y_pred_map} today.")
+        st.write(f"Session Prediction : You'll be {y_pred_map} today.")
       
         if y_pred_map == 'bobbing':
             st.write(f"It's not looking like Eric will show up today, so why not spend the afternoon working on your light wind freestyle? If you fancy a challenge, have a look at [this youtube tutorial](https://www.youtube.com/watch?v=TmjiKD8AfDk) to try your first clew-first helitack, clew-first upwind 360, improved sail stall, upwind 360 diablo or duck tack!")

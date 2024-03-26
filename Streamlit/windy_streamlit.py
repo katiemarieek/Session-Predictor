@@ -65,7 +65,7 @@ def windy():
     df = pd.DataFrame(data, index=[0])  
     
     # Load LogReg
-    with open('logreg.sav', 'rb') as file: 
+    with open('Streamlit/logreg.sav', 'rb') as file: 
         logreg = pickle.load(file)  
     
     if st.button("Predict my session"):

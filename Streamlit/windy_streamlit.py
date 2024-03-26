@@ -94,8 +94,7 @@ def windy():
             
             Whether it's a big kit blast or fast and furious you're due some windsurfing action today, so keep an eye on those flags.""")
         elif y_pred_map == 'flying':
-            st.write("""Batten down the hatches, it's going to be a big one! 
-            If you've been waiting for a chance to try some high wind freestyle, today may be your day. Remember, if the weather looks changeable, keep your kit comfortable and your runs short. Good luck!""")
+            st.write("Batten down the hatches, it's going to be a big one! \nIf you've been waiting for a chance to try some high wind freestyle, today may be your day. Remember, if the weather looks changeable, keep your kit comfortable and your runs short. Good luck!")
 windy()  
 
 st.markdown("[Like this app? Donate via Ko-fi to fuel more caffeine driven data projects](https://ko-fi.com/katie42)")

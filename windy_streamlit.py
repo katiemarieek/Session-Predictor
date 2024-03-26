@@ -1,0 +1,70 @@
+import streamlit as st
+import numpy as np
+import pandas as pd
+
+import pickle
+
+st.set_page_config(page_title="Session Predictor",
+                   page_icon=":ocean:",
+                   layout="centered")
+
+# banner
+st.image("https://images.pexels.com/photos/2745761/pexels-photo-2745761.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", use_column_width=True)
+
+# title
+st.title("Session Predictor - Vassiliki")
+
+def windy():
+    '''function for producing a prediction on session quality from a given set of data, using logreg.'''
+    # Take inputs
+    ws_12 = st.number_input("Input Wind Speed at 12.00", 0, 100)
+    ws_15 = st.number_input("Input Wind Speed at 15.00", 0, 100)
+    ws_18 = st.number_input("Input Wind Speed at 18.00", 0, 100)
+    ws_21 = st.number_input("Input Wind Speed at 21.00", 0, 100)
+    wg_12 = st.number_input("Input Wind Gusts at 12.00", 0, 100)
+    wg_15 = st.number_input("Input Wind Gusts at 15.00", 0, 100)
+    t_12 = st.number_input("Input Temperature at 12.00", 0, 100)
+    t_15 = st.number_input("Input Temperature at 15.00", 0, 100)
+    t_18 = st.number_input("Input Temperature at 18.00", 0, 100)
+    cc_09 = st.number_input("Input Cloud Cover at 09.00", 0, 100)
+    cc_12 = st.number_input("Input Cloud Cover at 12.00", 0, 100)
+    cc_15 = st.number_input("Input Cloud Cover at 15.00", 0, 100)
+    
+    allowed_directions = ['N', 'NNE', 'NE', 'NEE', 'E', 'SEE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'SWW', 
+                         'W', 'NWW', 'NW', 'NNW']
+    wd_12 = st.selectbox("Please select the Wind Direction at 12.00", allowed_directions)
+    wd_15 = st.selectbox("Please select the Wind Direction at 15.00", allowed_directions)
+    wd_18 = st.selectbox("Please select the Wind Direction at 18.00", allowed_directions)
+    
+    # Map directions
+    mapping = {'N': 180, 'NNE': 203, 'NE': 225, 'NEE': 248, 'E': 270, 'SEE': 293, 'SE': 315, 'SSE': 338, 'S':       360, 'SSW': 383, 'SW':405, 'SWW': 428, 'W': 450, 'NWW': 472, 'NW': 495, 'NNW': 518}
+    wd_12 = mapping[wd_12]
+    wd_15 = mapping[wd_15]
+    wd_18 = mapping[wd_18]
+    
+    # Create dataframe
+    features = ['ws_12', 'ws_15', 'ws_18', 'ws_21', 'wg_12', 'wg_15', 't_12', 't_15', 't_18', 'cc_09', 'cc_12',     'cc_15', 'wd_12', 'wd_15', 'wd_18']
+    values = [ws_12, ws_15, ws_18, ws_21, wg_12, wg_15, t_12, t_15, t_18, cc_09, cc_12, cc_15, wd_12, wd_15,         wd_18]
+
+    data = {feature: value for feature, value in zip(features, values)}
+    df = pd.DataFrame(data, index=[0])  
+    
+    # Load LogReg
+    with open('logreg.sav', 'rb') as file: 
+        logreg = pickle.load(file) 
+    file.close() 
+    
+    if st.button("Predict my session"):
+    # Make prediction
+        df[['prob_0', 'prob_1', 'prob_2']] = logreg.predict_proba(df)
+        df['y_pred'] = np.where(df['prob_0']>0.47, 0, np.where(df['prob_1']>0.47, 1, 2))
+
+        if df['y_pred'][0] == 0: 
+            y_pred_map = 'Bobbing'
+        elif df['y_pred'][0] == 1: 
+            y_pred_map = 'Planing'
+        elif df['y_pred'][0] == 2: 
+            y_pred_map = 'Flying'
+        st.write(f'Session Prediction : {y_pred_map} Time!')
+
+windy()  

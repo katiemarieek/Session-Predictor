@@ -66,8 +66,7 @@ def windy():
     
     # Load LogReg
     with open('logreg.sav', 'rb') as file: 
-        logreg = pickle.load(file) 
-    file.close() 
+        logreg = pickle.load(file)  
     
     if st.button("Predict my session"):
     # Make prediction
